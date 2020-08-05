@@ -1,28 +1,27 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 import TableData from '../components/TableData';
+import useFetch from '../hooks/useFetch';
 
-class Table extends Component {
-    constructor() {
-        super();
-        this.state = {
-            footballs: [],
-            // competition: {}
-        }
+const Table = () => {
+    const competitions = useFetch ( "http://api.football-data.org/v2/competitions" );
+    const [search, setSearch] = useState("")
+    const [searchResult, setSearchResult] = useState([])
+    
+    const handleChange = (e) => {
+        setSearch(e.target.value)
     }
-    componentDidMount() {
-        fetch( "http://api.football-data.org/v2/competitions" ,{
-            headers: { 'X-Auth-Token': '6a7c673ff8744f4a89bef61d69edc7f3' },
-            dataType: 'json',
-            type: 'GET',
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            this.setState({ footballs: data.competitions.slice(0, 10) });
-        });
+
+    const onSearch = () => {
+        let result = competitions.filter((item) => item.area.name.toLowerCase().includes(search.toLowerCase()))
+        setSearchResult(result)
     }
-    render() {
-        return (
+
+    return (
         <div className="container">
+            <div className="mb-3">
+                <input onChange={(e) => handleChange(e)} type="search" value={search} />&nbsp;
+                <button onClick={()=> onSearch()} className="btn btn-info" >search</button>
+            </div>
             <table className="table">
                 <thead className="thead-light">
                     <tr>
@@ -30,17 +29,17 @@ class Table extends Component {
                         <th scope="col">Competition Area</th>
                         <th scope="col">Code</th>
                         <th scope="col">Competition Name</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                     {this.state.footballs.map((football, id) => {
-                        return <TableData key={id} data={football} />;
-                    })}
+                     {(searchResult.length > 0 ? searchResult : competitions).map((competition) => (
+                        <TableData key={competition.id} props={competition} />
+                     ))}
                 </tbody>
             </table>
         </div>
     );
-  }
 }
 
 export default Table;

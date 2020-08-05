@@ -1,10 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 import '../Table.css'
 
-class Navbar extends Component {
-    render() {
-        return (
-          <>
+const Navbar = () => {    
+    return (
+        <>
             <nav className="navbar navbar-expand-lg navbar-light bg-info">
                 <p className="navbar-brand text-white">Football Data-App</p>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" 
@@ -24,9 +23,8 @@ class Navbar extends Component {
                     <button className="btn btn-danger" href="#">Logout</button>
                 </div>
             </nav>
-          </>
-        );  
-    }
+        </>
+    );  
 }
 
 export default Navbar;
