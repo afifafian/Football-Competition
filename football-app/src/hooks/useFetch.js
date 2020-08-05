@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 
 const useFetch = url => {
   const [competitions, setCompetitions] = useState([]);
-  //   const [error, setError] = useState(null);
-  //   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
 

@@ -1,20 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
+import {useHistory} from "react-router-dom"; 
 
 const TableData = ({props}) => {
     const {id, area: {name, countryCode}, name: compName } = props
-    const [detail, setDetail] = useState({});
+    const history = useHistory();
     
     const getDetails = (compId) => {
-        fetch(`http://api.football-data.org/v2/competitions/${compId}`, {
-            headers: { 'X-Auth-Token': '6a7c673ff8744f4a89bef61d69edc7f3' },
-            dataType: 'json',
-            type: 'GET',
-        })
-        .then(resp => resp.json())
-        .then(data => setDetail(data))
-        .catch(err => {
-            console.log(err);
-            alert('Sorry You didnt have access to this competition')
+        history.push({
+            pathname: `/competitions/${id}`,
+            state: {
+                id: compId
+            }
         })
     };
 

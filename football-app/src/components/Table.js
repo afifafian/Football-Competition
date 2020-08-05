@@ -12,14 +12,14 @@ const Table = () => {
     }
 
     const onSearch = () => {
-        let result = competitions.filter((item) => item.area.name.toLowerCase().includes(search.toLowerCase()))
+        let result = competitions.filter((item) => String(item.id).toLowerCase().includes(search.toLowerCase()))
         setSearchResult(result)
     }
 
     return (
         <div className="container">
             <div className="mb-3">
-                <input onChange={(e) => handleChange(e)} type="search" value={search} />&nbsp;
+                <input onChange={(e) => handleChange(e)} type="search" value={search} placeholder="input competition id here" />&nbsp;
                 <button onClick={()=> onSearch()} className="btn btn-info" >search</button>
             </div>
             <table className="table">

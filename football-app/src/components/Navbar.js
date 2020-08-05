@@ -14,13 +14,9 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <p className="nav-link text-white" href="#">Home</p>
-                        </li>
-                        <li className="nav-item">
-                            <p className="nav-link text-white" href="#">About</p>
+                            <p className="nav-link text-white" href="#">Favorites</p>
                         </li>
                     </ul>
-                    <button className="btn btn-danger" href="#">Logout</button>
                 </div>
             </nav>
         </>

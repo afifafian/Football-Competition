@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from '../components/Navbar';
 import Table from "../components/Table";
 
 const Competition = () =>  {
@@ -6,6 +7,7 @@ const Competition = () =>  {
   
   return (
     <>
+      <Navbar/>
       <h1 className="mt-4">{title}</h1>
       <hr />
       <Table />
