@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const useFetch = url => {
   const [competitions, setCompetitions] = useState([]);
+  const result = []
 
   useEffect(() => {
 
@@ -20,7 +21,14 @@ const useFetch = url => {
       });
   }, [url]);
 
-  return competitions;
+  competitions.forEach(e => {
+    if (e.id <= 2003 || e.id === 2013 || e.id === 2014 || e.id === 2015 || e.id === 2016 
+      || e.id === 2017 || e.id === 2018 || e.id === 2019 || e.id === 2021) {
+      result.push(e)
+    }
+  });
+
+  return result;
 };
 
 export default useFetch;

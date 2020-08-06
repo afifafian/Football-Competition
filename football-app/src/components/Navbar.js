@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import '../Table.css'
 
 const Navbar = () => {    
@@ -11,13 +12,10 @@ const Navbar = () => {
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <p className="nav-link text-white" href="#">Favorites</p>
-                        </li>
-                    </ul>
-                </div>
+                <p className="navbar-brand text-white favorite">
+                    <Link className="navbar-brand text-white" to={{ pathname: '/favorites',}}>Favorites
+                    </Link>
+                </p>
             </nav>
         </>
     );  
