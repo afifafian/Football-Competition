@@ -1,7 +1,6 @@
 import React from 'react';
-import Competition from './pages/Competition';
-import CompetitionDetail from './pages/CompetitionDetail';
-import Favorites from './pages/Favorites';
+import {Competition, CompetitionDetail, Favorites} from './pages';
+import NotFound from './components/NotFound';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import {Provider} from "react-redux";
 import store from './store';
@@ -21,6 +20,9 @@ function App() {
             </Route>
             <Route exact path="/favorites">
               <Favorites />
+            </Route>
+            <Route path="*">
+              <NotFound />
             </Route>
           </Switch>
         </Router>
