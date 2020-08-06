@@ -1,11 +1,12 @@
 import React from "react";
 import {useHistory} from "react-router-dom"; 
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {addToFavorite} from '../store/actions/favoriteAction';
 import swal from "sweetalert";
 
 const TableData = ({props}) => {
     const {id, area: {name, countryCode}, name: compName } = props
+    const {favorites} = useSelector(state => state.favoriteReducer);
     const history = useHistory();
     const dispatch = useDispatch();
     
@@ -15,11 +16,16 @@ const TableData = ({props}) => {
         })
     };
     const addToFavorites = () => {
-        dispatch(addToFavorite(props))
-        history.push({
-            pathname: '/favorites',
-        })
-        swal("Success!", "Successfully Added to Favorite!", "success");
+        const check = favorites.find(favorite => favorite.id === props.id)
+        if (check) {
+            swal("Warning!", "Already added to Favorite!", "warning");
+        } else {
+            dispatch(addToFavorite(props))
+            history.push({
+                pathname: '/favorites',
+            })
+            swal("Success!", "Successfully Added to Favorite!", "success");
+        }   
     }
     return (
         <tr>
