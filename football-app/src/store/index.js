@@ -1,29 +1,12 @@
-import {createStore} from "redux";
+import {createStore, applyMiddleware, combineReducers} from "redux";
+import thunk from "redux-thunk";
+import { competitionReducer, favoriteReducer } from './reducers';
 
-const initialState = {
-    favorites: [],
-};
+const reducers = combineReducers({
+    competitionReducer,
+    favoriteReducer,
+})
 
-function favoriteReducer(state = initialState, action) {
-    let angka = []
-    
-    switch (action.type) {
-        case "ADD_TO_FAVORITE":
-            state.favorites.forEach(e => {
-                angka.push(e.id)
-            });
-            if (angka.includes(action.payload.data.id)) {
-                return state
-            } else {
-                return {...state,
-                    favorites: state.favorites.concat(action.payload.data)
-                };
-            }
-        default:
-        return state
-    }
-}
-
-const store = createStore(favoriteReducer);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 export default store;

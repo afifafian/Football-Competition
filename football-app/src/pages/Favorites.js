@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 
 const Favorite = () =>  {
   const [title] = useState("List Favorites");
-  const {favorites} = useSelector(state => state);
+  const {favorites} = useSelector(state => state.favoriteReducer);
 
   return (
     <>

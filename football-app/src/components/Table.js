@@ -1,20 +1,26 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import TableData from '../components/TableData';
-import useFetch from '../hooks/useFetch';
+import {useDispatch, useSelector} from "react-redux";
+import {getCompetitions} from '../store/actions/competitionAction';
 
 const Table = () => {
-    const competitions = useFetch ( "http://api.football-data.org/v2/competitions" );
+    const dispatch = useDispatch();
+    const {competitions} = useSelector((state) => state.competitionReducer);
     const [search, setSearch] = useState("")
     const [searchResult, setSearchResult] = useState([])
-    
+
     const handleChange = (e) => {
         setSearch(e.target.value)
     }
 
     const onSearch = () => {
-        let result = competitions.filter((item) => String(item.id).toLowerCase().includes(search.toLowerCase()))
+        let result = competitions.filter((item) => String(item.id).includes(search))
         setSearchResult(result)
     }
+
+    useEffect(() => {
+        dispatch(getCompetitions());   
+    },[dispatch])
 
     return (
         <div className="container">
