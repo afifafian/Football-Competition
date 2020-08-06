@@ -12,11 +12,7 @@ const Favorite = () =>  {
     <>
       <Navbar/>
       <h1 className="mt-4">{title}</h1>
-      <Link
-        to={{
-          pathname: "/",
-        }}
-      >
+      <Link to={{ pathname: "/", }}>
         Back to Main Page
       </Link>
       <hr />
