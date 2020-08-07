@@ -34,7 +34,7 @@ const TableData = ({props}) => {
             <td>{countryCode}</td>
             <td>{compName}</td>
             <td> 
-                <button className="btn btn-success" onClick={() => getDetails()}>See Details</button> &nbsp;
+                <button data-testid="detail-link" className="btn btn-success" onClick={() => getDetails()}>See Details</button> &nbsp;
                 <button className="btn btn-primary" onClick={() => addToFavorites()}>Add to Favorites</button>
             </td>
         </tr>

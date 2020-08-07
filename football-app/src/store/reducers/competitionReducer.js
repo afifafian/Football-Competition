@@ -1,6 +1,7 @@
 const initialState = {
     competitions: [],
     detail: {},
+    loading: false,
 };
 
 function competitionReducer(state = initialState, action) {
@@ -17,6 +18,10 @@ function competitionReducer(state = initialState, action) {
             return {...state, competitions: result };
         case "SET_COMPETITION":
             return {...state, detail: action.payload.detail};
+        case "DISPLAY_LOADING":
+            return {...state, loading: true};
+        case "HIDE_LOADING":
+            return {...state, loading: false};
             
         default:
         return state

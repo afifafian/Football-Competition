@@ -13,7 +13,7 @@ const Navbar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <p className="navbar-brand text-white favorite">
-                    <Link className="navbar-brand text-white" to={{ pathname: '/favorites',}}>Favorites
+                    <Link data-testid="favorite-link" className="navbar-brand text-white" to={{ pathname: '/favorites',}}>Favorites
                     </Link>
                 </p>
             </nav>

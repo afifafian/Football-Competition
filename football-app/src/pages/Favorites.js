@@ -11,7 +11,7 @@ const Favorite = () =>  {
   return (
     <>
       <Navbar/>
-      <h1 className="mt-4">{title}</h1>
+      <h1 data-testid="favorite-title" className="mt-4">{title}</h1>
       <Link to={{ pathname: "/", }}>
         Back to Main Page
       </Link>

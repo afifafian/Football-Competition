@@ -8,7 +8,7 @@ const Competition = () =>  {
   return (
     <>
       <Navbar/>
-      <h1 className="mt-4">{title}</h1>
+      <h1 className="mt-4" data-testid="main-title">{title}</h1>
       <hr />
       <Table />
     </>

@@ -5,7 +5,7 @@ import '../Card.css'
 
 const Card = ({compId}) => {
     const dispatch = useDispatch();
-    const {detail} = useSelector((state) => state.competitionReducer);
+    const {detail, loading} = useSelector((state) => state.competitionReducer);
 
     useEffect(() => {
         dispatch(getCompetitionDetail(compId))
@@ -33,7 +33,13 @@ const Card = ({compId}) => {
         default:
             break;
     }
-
+    if (loading) {
+        return (
+            <div className="container">
+                <h2>Please Wait....</h2>
+            </div>
+        )
+    }
     return (
         <div className="card container">
             <div className="card-body">

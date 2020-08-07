@@ -10,7 +10,7 @@ const CompetitionDetail = () =>  {
   return (
     <>
       <Navbar/>
-      <h1 className="mt-4">{title}</h1>
+      <h1 data-testid="detail-title" className="mt-4">{title}</h1>
       <Link
         to={{
           pathname: "/",

@@ -1,5 +1,8 @@
 export const getCompetitions = () => {
     return (dispatch, getState) => {
+        dispatch({
+            type: "DISPLAY_LOADING"
+        })
         fetch("https://api.football-data.org/v2/competitions", {
             headers: { 'X-Auth-Token': '6a7c673ff8744f4a89bef61d69edc7f3' },
             dataType: 'json',
@@ -17,11 +20,19 @@ export const getCompetitions = () => {
         .catch(err => {
             console.log(err);
         })
+        .finally(()=>{
+            dispatch({
+                type: "HIDE_LOADING"
+            })
+        })
     }
 };
 
 export const getCompetitionDetail = (compId) => {
     return (dispatch, getState) => {
+        dispatch({
+            type: "DISPLAY_LOADING"
+        })
         fetch(`https://api.football-data.org/v2/competitions/${compId}`, {
             headers: { 'X-Auth-Token': '6a7c673ff8744f4a89bef61d69edc7f3' },
             dataType: 'json',
@@ -38,6 +49,11 @@ export const getCompetitionDetail = (compId) => {
         })
         .catch(err => {
             console.log(err);
+        })
+        .finally(()=>{
+            dispatch({
+                type: "HIDE_LOADING"
+            })
         })
     }
 };

@@ -5,7 +5,7 @@ import {getCompetitions} from '../store/actions/competitionAction';
 
 const Table = () => {
     const dispatch = useDispatch();
-    const {competitions} = useSelector((state) => state.competitionReducer);
+    const {competitions, loading} = useSelector((state) => state.competitionReducer);
     const [search, setSearch] = useState("")
     const [searchResult, setSearchResult] = useState([])
 
@@ -22,6 +22,13 @@ const Table = () => {
         dispatch(getCompetitions());   
     },[dispatch])
 
+    if (loading) {
+        return (
+            <div className="container">
+                <h2>Please Wait....</h2>
+            </div>
+        )
+    }
     return (
         <div className="container">
             <div className="mb-3">
